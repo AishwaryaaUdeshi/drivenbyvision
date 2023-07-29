@@ -1,5 +1,0 @@
-# drivenbyvision
-Lane detection CNN algorithm trained on synthetic images that detects whether a vehicle is within the road’s lane lines. If it is not, the algorithm gives the driver instructions on what adjustments to make; specifically, the algorithm uses regression to predict what angle the vehicle needs to rotate to become aligned within the lane. Sophisticated versions of this type of computational intelligence methods are currently installed into vehicles' navigation systems, allowing us to reduce the likelihood of accidents caused by inadvertent lane departures and promote safer driving practices.
-
-We will train our CNN on real images of vehicles in lanes and even use computer vision to train our algorithm on real videos (this would be accomplished by reverse-segmenting the CNN and creating a data pipeline) too. The study of these types of models holds the potential to revolutionize the automotive industry by paving the way toward safer and more autonomous driving solutions that prioritize road sharing.
-
