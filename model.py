@@ -2,19 +2,23 @@ import numpy as np
 import pickle
 from sklearn.utils import shuffle
 from sklearn.model_selection import train_test_split
+from pathlib import Path
+
 
 # Import necessary items from Keras
 from keras.models import Sequential
 from keras.layers import Activation, Dropout, UpSampling2D
-from keras.layers import Deconvolution2D, Convolution2D, MaxPooling2D
-from keras.layers.normalization import BatchNormalization
+from keras.layers import Conv2DTranspose, Convolution2D, MaxPooling2D
+from tensorflow.keras.layers import BatchNormalization
 from keras.preprocessing.image import ImageDataGenerator
 
+HERE = Path(__file__).parent
+
 # Load training images
-train_images = pickle.load(open("train_images.p", "rb" ))
+#train_images = pickle.load(open(HERE / "train_images", "rb" ))
 
 # Load image labels
-labels = pickle.load(open("train_labels.p", "rb" ))
+labels = pickle.load(open(HERE / "train_labels.p", "rb" ))
 
 # Make into arrays as the neural network wants these
 train_images = np.array(train_images)
