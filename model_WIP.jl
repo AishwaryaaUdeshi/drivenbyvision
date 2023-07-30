@@ -22,7 +22,7 @@ labels = readdlm("angles.txt")
 labels = vec(labels)
 
 # Load training images
-train_images = load_images("test_data_set.txt")
+train_images = load_images("training_set.txt")
 
 # Shuffle images along with their labels
 train_images, labels = shuffle(train_images, labels)
