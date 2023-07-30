@@ -2,21 +2,30 @@ using Flux
 using Statistics
 using Random
 
-# Load training images
-train_images = load("train_images.p")  
+# Function to read the images from the text file and reshape them
+# Function to read the images from the text file and reshape them
+function load_images(file_path)
+    data = load(file_path)  # Load the entire file as a single array
+    num_images = size(data, 1) ÷ 100 ÷ 100  # Assuming 100x100 images
+
+    images = [reshape(data[(i-1)*100*100+1:i*100*100], 100, 100) for i in 1:num_images]
+    images = permutedims(hcat(images...), (3, 2, 1))  # Convert to (100, 100, num_images) array
+
+    return images
+end
+
 
 # Load image labels
-labels = load("train_labels.p")  
+labels = readdlm("angles.txt")
 
-# Make into arrays as the neural network wants these
-train_images = permutedims(Array(train_images), (4, 3, 2, 1))
-labels = permutedims(Array(labels), (4, 3, 2, 1))
+# Convert the labels to a 1-dimensional array
+labels = vec(labels)
 
-# Normalize labels - training images get normalized to start in the network
-labels = labels ./ 255
+# Load training images
+train_images = load_images("test_data_set.txt")
 
 # Shuffle images along with their labels
-train_images, labels = shuffle(train_images, labels, dims=4)
+train_images, labels = shuffle(train_images, labels)
 
 # Split into training/validation sets
 X_train, X_val, y_train, y_val = Flux.Data.train_test_split(train_images, labels, test_size=0.1)
