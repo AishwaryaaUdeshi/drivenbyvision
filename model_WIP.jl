@@ -1,11 +1,11 @@
 using Flux
 using Statistics
 using Random
+using DelimitedFiles
 
 # Function to read the images from the text file and reshape them
-# Function to read the images from the text file and reshape them
 function load_images(file_path)
-    data = load(file_path)  # Load the entire file as a single array
+    data = readdlm(file_path)  # Load the entire file as a single array
     num_images = size(data, 1) ÷ 100 ÷ 100  # Assuming 100x100 images
 
     images = [reshape(data[(i-1)*100*100+1:i*100*100], 100, 100) for i in 1:num_images]
